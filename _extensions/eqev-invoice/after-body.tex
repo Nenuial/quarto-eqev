@@ -1,0 +1,33 @@
+\vspace{1cm}
+\textbf{Paiement net à 30 jours.}
+\vspace{1cm}
+
+
+$if(closing)$\closing{$closing$}$endif$
+$if(encl)$\encl{$for(encl)$$encl$$sep$\\$endfor$}$endif$
+$if(cc)$\cc{$for(cc)$$cc$$sep$\\$endfor$}$endif$
+$if(ps)$\ps{$ps$}$endif$
+
+\end{letter}
+
+\clearpage
+\thispagestyle{empty}
+\newgeometry{margin=0cm,left=0cm,top=190mm,right=0cm}
+\QRbill[
+  creditor*={$fac-name$\\
+    $fac-address$\\
+    $fac-address-number$\\
+    $fac-zip$\\
+    $fac-place$\\
+    $fac-country$},
+  Account=$fac-iban$,
+  debtor*={$name$\\
+    $address$\\
+    $number$\\
+    $zip$\\
+    $toplace$\\
+    $country$},
+  Amount=$fac-amount$,
+  Message=Facture $fac-num$,
+  invoicenum=$fac-num$,
+]

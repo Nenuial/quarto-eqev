@@ -1,0 +1,66 @@
+---
+name: Hans Muster
+address: Rue Centrale
+number: 1
+zip: 1111
+toplace: Perpette-les-Oies
+country: CH
+
+fac-num: 22101001
+fac-iban: "CH5909000000151939787"
+fac-name: "Pascal Burkhard"
+fac-address: "Chemin du Marais"
+fac-address-number: "10"
+fac-zip: "1031"
+fac-place: "Mex"
+fac-country: "CH"
+fac-amount: 150
+
+author: "Pascal Burkhard"
+mytitle: "EquiEvents"
+place: "Mex"
+
+return-email: "info@equievents.ch"
+return-phone: "079 772 37 56"
+return-address: 
+  - "Ch. du Marais 10"
+  - "CH-1031 Mex"
+
+subject: Facture
+opening: Monsieur,
+closing: Avec mes meilleures salutations,
+signature: Pascal Burkhard
+
+format: eqev-invoice-pdf
+---
+
+Voici le détail de votre facture :
+
+```{r, echo=FALSE}
+library(flextable)
+
+flextable::set_flextable_defaults(fonts_ignore=TRUE)
+
+blueborder <- officer::fp_border(color = "#00496f", style = "solid", width = 1)
+
+tibble::tribble(
+  ~` `, ~Montant,
+  "Résultats live en ligne (y.c. hébergement pour 365 j.)", "CHF 150.–",
+  "Matériel mis à disposition pour résultats live (forfait)", "inclus",
+) |> 
+  flextable::flextable() |>
+  flextable::add_footer_row(values = c("Total", "CHF 150.–"), colwidths = c(1,1)) |> 
+  flextable::width(j = c(1), width = 13, unit = "cm") |>
+  flextable::width(j = c(2), width = 3.9, unit = "cm") |> 
+  flextable::font(fontname = "Fira Sans Light") |> 
+  flextable::theme_alafoli() |> 
+  flextable::color(part = "all", color = "black") |> 
+  flextable::hline(part = "header", border = blueborder) |> 
+  flextable::hline_bottom(
+    j = c(2), 
+    border = blueborder, 
+    part = "body"
+  ) |> 
+  flextable::align(j = c(2), align = "right", part = "all")
+```
+
