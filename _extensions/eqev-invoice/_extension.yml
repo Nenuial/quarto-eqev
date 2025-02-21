@@ -1,6 +1,6 @@
 title: EquiEvents Invoice
 author: Pascal Burkhard
-version: 1.0.3
+version: 1.0.4
 contributes:
   format:
     pdf:
@@ -44,4 +44,4 @@ contributes:
       mathfontoptions:
         - Path = /Library/Fonts/
         - Extension = .otf
-      
+source: nenuial/quarto-eqev
